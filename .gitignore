@@ -19,6 +19,7 @@ pids
 # Android/IntelliJ
 android/app/build/
 android/.gradle/
+android/.idea/
 *.cxx
 *.cpp.o
 
