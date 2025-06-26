@@ -34,6 +34,7 @@ function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
   return (
     <SafeScreen>
       <View
+        testID='splash-screen-container'
         style={[
           layout.flex_1,
           layout.col,
@@ -41,7 +42,8 @@ function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
           layout.justifyCenter,
         ]}
       >
-        <Text>Ankr Test</Text>
+        
+        <Text testID='splash-screen-title'>Ankr Test</Text>
       </View>
     </SafeScreen>
   );

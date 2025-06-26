@@ -6,32 +6,28 @@ import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 interface JobItemProps {
     jobItem: JobPosting
-    testID?: string
-    onPressJobItem: () => void
 }
 
-const JobItem = (props:JobItemProps) => {
-    const {testID, jobItem, onPressJobItem} = props;
+const JobItem = (props: JobItemProps) => {
+    const { jobItem } = props;
     const {
         layout,
     } = useTheme();
-    return (
-        <TouchableHighlight onPress={onPressJobItem} testID={testID}>
-            <View style={styles.card}>
-                <Text style={styles.title}>{jobItem.title}</Text>
-                <View style={[layout.row, layout.justifyBetween, layout.itemsCenter, {
-                    flexWrap: 'wrap'
-                }]}>
-                  <Text style={styles.company}>{jobItem.company}</Text>
-                  <Text style={[styles.company, {fontSize: 12}]}>Posted on: {jobItem.created_at}</Text>
-                </View>
-                <Text style={styles.label}>Location: <Text style={styles.value}>{jobItem.location}</Text></Text>
-                <Text style={styles.label}>Job Category: <Text style={styles.value}>{jobItem.job_category}</Text></Text>
-                <Text style={styles.label}>Employment Type: <Text style={styles.value}>{jobItem.employment_type}</Text></Text>
-                <Text style={styles.label}>Remote: <Text style={styles.value}>{jobItem.is_remote_work ? 'Yes' : 'No'}</Text></Text>
-            </View>
 
-        </TouchableHighlight>
+    return (
+        <View style={styles.card}>
+            <Text style={styles.title}>{jobItem.title}</Text>
+            <View style={[layout.row, layout.justifyBetween, layout.itemsCenter, {
+                flexWrap: 'wrap'
+            }]}>
+                <Text style={styles.company}>{jobItem.company}</Text>
+                <Text style={[styles.company, { fontSize: 12 }]}>Posted on: {jobItem.created_at}</Text>
+            </View>
+            <Text style={styles.label}>Location: <Text style={styles.value}>{jobItem.location}</Text></Text>
+            <Text style={styles.label}>Job Category: <Text style={styles.value}>{jobItem.job_category}</Text></Text>
+            <Text style={styles.label}>Employment Type: <Text style={styles.value}>{jobItem.employment_type}</Text></Text>
+            <Text style={styles.label}>Remote: <Text style={styles.value}>{jobItem.is_remote_work ? 'Yes' : 'No'}</Text></Text>
+        </View>
     );
 };
 

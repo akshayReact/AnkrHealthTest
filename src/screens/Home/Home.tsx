@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FlatList, Text, ActivityIndicator, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { FlatList, Text, ActivityIndicator, View, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native';
 
 import { useTheme } from '@/theme';
 
@@ -11,7 +11,7 @@ import JobItemCard from './Components/JobItemCard';
 import text from '@/theme/text';
 import { JobFilter, JobPosting } from '@/navigation/types';
 import { CommonActions } from '@react-navigation/native';
-import { FILTER_JOB_TYPE } from '@/Constants';
+import { FILTER_JOB_TYPE, FILTER_JOB_TYPE_OPTIONS } from '@/Constants';
 import TextBox from '@/components/atoms/TextBox/TextBox';
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -32,7 +32,7 @@ function Home({ navigation }) {
   const [searchText, setSearchText] = useState('');
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState(FILTER_JOB_TYPE)
+  const [items, setItems] = useState(FILTER_JOB_TYPE_OPTIONS)
   const {
     fonts,
     gutters,
@@ -119,7 +119,6 @@ function Home({ navigation }) {
       </View>
       <View style={[layout.row, layout.itemsCenter, layout.justifyCenter, gutters.marginHorizontal_12, gutters.marginBottom_16]}>
         <TextBox
-          testID="search-input"
           hintText="Search by Company name"
           inputValue={searchText}
           handleInputChange={handleSearchTextChange}
@@ -130,6 +129,7 @@ function Home({ navigation }) {
           Filter By
         </Text>
         <DropDownPicker
+          testID='job-filter-dropdown'
           open={open}
           style={[
             layout.inputFieldStyle,
@@ -146,6 +146,8 @@ function Home({ navigation }) {
           setItems={setItems}
         />
       </View>
+      <Text testID='selected-filter' style={{fontSize: 16, color: '#000'}}>{value}</Text>
+
       {
         filters.jobType ?
           <TouchableOpacity onPress={onRemoveFilters} testID="remove-filters">
@@ -178,7 +180,11 @@ function Home({ navigation }) {
             jobList && Array.isArray(jobList) && !isLoading ?
               <FlatList
                 data={jobList}
-                renderItem={(item, index) => <JobItemCard testID={`row-${index+1}`} jobItem={item.item} onPressJobItem={() => handleJobItemPress(item)} />}
+                renderItem={({ item, index }) => (
+                  <TouchableHighlight onPress={() => handleJobItemPress(item)} testID={`row-${(index + 1)}`}>
+                    <JobItemCard jobItem={item} />
+                  </TouchableHighlight>
+                )}
                 keyExtractor={(item) => {
                   return `${Math.random() * 10} ${item.id}`
                 }}

@@ -64,7 +64,7 @@ const homeSlice = createSlice({
       state.homeJobsFetchedError = action.payload?.message || action.payload.response?.data;
     },
     setSelectedJobData(state, action) {
-      state.selectedJob = action.payload.item
+      state.selectedJob = action.payload
     },
     toggleIsResetAllJobs(state, action) {
       state.isResetAllForms = action.payload;

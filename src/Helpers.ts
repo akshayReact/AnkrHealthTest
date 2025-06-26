@@ -10,3 +10,8 @@ export function createTestStore() {
   );
   return store;
 }
+
+export async function makeRequest() {
+	const res = await fetch('https://jsonfakery.com/jobs/simple-paginate?page=1');
+	return res.json();
+}

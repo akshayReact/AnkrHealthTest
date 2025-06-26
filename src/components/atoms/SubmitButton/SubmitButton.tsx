@@ -9,7 +9,7 @@ import {
 
 const SubmitButton = ({ onPress }: { onPress: () => void }) => {
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
+    <TouchableWithoutFeedback onPress={onPress} testID='submit-btn'>
       <View style={styles.button}>
         <Text style={styles.buttonText}>Submit</Text>
       </View>

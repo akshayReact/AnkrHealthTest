@@ -63,6 +63,7 @@ function TextBox({
       }
       <View style={{ flex: 8, paddingHorizontal: 10 }}>
         <TextInput
+          testID="search-input"
           style={[layout.textBox1, layout.fullWidth, textBoxStyles, {fontSize: 14}]}
           placeholder={hintText}
           value={inputValue}

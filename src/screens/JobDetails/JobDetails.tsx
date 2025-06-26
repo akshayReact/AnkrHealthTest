@@ -45,7 +45,7 @@ function JobDetails({ navigation }) {
                 <TouchableOpacity
                     onPress={() => handleGoBack()}
                     style={[components.buttonCircle]}
-                    testID="fetch-user-button"
+                    testID="back-button"
                 >
                     <IconByVariant path="leftarrow" stroke={colors.purple500} height={18} width={18} />
                 </TouchableOpacity>
@@ -55,27 +55,27 @@ function JobDetails({ navigation }) {
                 <View></View>
             </View>
             <View style={[gutters.marginTop_40, gutters.marginBottom_16]}>
-                <Text numberOfLines={2} style={[fonts.size_24, fonts.gray800, fonts.bold, gutters.marginLeft_12, {flexWrap: 'wrap'}]}>
-                    {selectedJob.title}
+                <Text testID='selected-job-title' numberOfLines={2} style={[fonts.size_24, fonts.gray800, fonts.bold, gutters.marginLeft_12, {flexWrap: 'wrap'}]}>
+                    {selectedJob?.title}
                 </Text>
             </View>
-            <View style={styles.card}>
-                <Text style={styles.title}>{selectedJob.title}</Text>
-                <Text style={styles.company}>{selectedJob.company}</Text>
-                <Text style={styles.label}>Location: <Text style={styles.value}>{selectedJob.location}</Text></Text>
-                <Text style={styles.label}>Job Category: <Text style={styles.value}>{selectedJob.job_category}</Text></Text>
-                <Text style={styles.label}>Employment Type: <Text style={styles.value}>{selectedJob.employment_type}</Text></Text>
-                <Text style={styles.label}>Remote: <Text style={styles.value}>{selectedJob.is_remote_work ? 'Yes' : 'No'}</Text></Text>
-                <Text style={styles.label}>Openings: <Text style={styles.value}>{selectedJob.number_of_opening}</Text></Text>
-                <Text style={styles.label}>Salary: <Text style={styles.value}>${selectedJob.salary_from} - ${selectedJob.salary_to}</Text></Text>
-                <Text style={styles.label}>Deadline: <Text style={styles.value}>{selectedJob.application_deadline}</Text></Text>
-                <Text style={styles.label}>Contact: <Text style={styles.value}>{selectedJob.contact}</Text></Text>
-                <Text style={styles.label}>Qualifications:</Text>
-                {JSON.parse(selectedJob.qualifications || '[]').map((q, index) => (
+            <View style={styles.card} testID='job-details-container'>
+                <Text testID='job-title' style={styles.title}>{selectedJob?.title}</Text>
+                <Text testID='job-company-name' style={styles.company}>{selectedJob?.company}</Text>
+                <Text testID='job-location' style={styles.label}>Location: <Text style={styles.value}>{selectedJob?.location}</Text></Text>
+                <Text testID='job-category' style={styles.label}>Job Category: <Text style={styles.value}>{selectedJob?.job_category}</Text></Text>
+                <Text testID='job-employment-type' style={styles.label}>Employment Type: <Text style={styles.value}>{selectedJob?.employment_type}</Text></Text>
+                <Text testID='job-is-remote' style={styles.label}>Remote: <Text style={styles.value}>{selectedJob?.is_remote_work ? 'Yes' : 'No'}</Text></Text>
+                <Text testID='job-openings' style={styles.label}>Openings: <Text style={styles.value}>{selectedJob?.number_of_opening}</Text></Text>
+                <Text testID='job-salary' style={styles.label}>Salary: <Text style={styles.value}>${selectedJob?.salary_from} - ${selectedJob?.salary_to}</Text></Text>
+                <Text testID='job-deadline' style={styles.label}>Deadline: <Text style={styles.value}>{selectedJob?.application_deadline}</Text></Text>
+                <Text testID='job-contact' style={styles.label}>Contact: <Text style={styles.value}>{selectedJob?.contact}</Text></Text>
+                <Text testID='job-qualifications' style={styles.label}>Qualifications:</Text>
+                {JSON.parse(selectedJob?.qualifications || '[]').map((q, index) => (
                     <Text key={index} style={styles.qualification}>• {q}</Text>
                 ))}
             </View>
-            <SubmitButton onPress={handleBtnPress} />
+            <SubmitButton onPress={handleBtnPress} testID='submit-btn' />
         </SafeScreen>
     );
 }

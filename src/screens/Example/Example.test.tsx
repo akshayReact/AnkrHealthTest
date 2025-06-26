@@ -3,7 +3,6 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 import { I18nextProvider } from 'react-i18next';
 import { MMKV } from 'react-native-mmkv';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
 import { SupportedLanguages } from '@/hooks/language/schema';
 import { ThemeProvider } from '@/theme';
 import i18n from '@/translations';
